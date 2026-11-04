@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nordlicht Reisen: Städtereisen, Naturreisen und Kurzurlaube in Skandinavien – von Kopenhagen bis Lappland.">
+  <meta name="author" content="Nordlicht Reisen GmbH">
+  <title>Nordlicht Reisen – Skandinavien erleben</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Optional: kleines Spiel im Hero. Die Seite funktioniert auch ohne JavaScript. -->
+  <script src="js/fjord-spiel.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <img src="img/logo.svg" alt="Logo von Nordlicht Reisen" width="40" height="40">
+        Nordlicht <span>Reisen</span>
+      </a>
+      <nav class="hauptnav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html" aria-current="page">Start</a></li>
+          <li><a href="reisen.html">Reisen</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhalt">
+    <!-- Hero-Bereich: Hintergrundbild per CSS (background-image), Animation per ::before -->
+    <section class="hero" aria-labelledby="hero-titel">
+      <div class="container hero__inhalt">
+        <div class="hero__text">
+          <span class="vorzeile">Skandinavien erleben</span>
+          <h1 id="hero-titel">Reisen, wo die Sonne <em>nie untergeht</em>.</h1>
+          <p>Ob Großstadt-Wochenende in Kopenhagen, Wanderwoche unter der Mitternachtssonne auf den Lofoten oder Nordlicht-Jagd in Lappland: Wir planen deine Reise in den Norden – persönlich, nachhaltig und mit viel Liebe zum Detail.</p>
+          <div class="hero__aktionen">
+            <a class="btn" href="reisen.html">Reisen entdecken</a>
+            <a class="btn btn--hell" href="kontakt.html">Beratung anfragen</a>
+          </div>
+        </div>
+
+        <!-- Fjord-Fahrt: ohne JS ein Bild, mit JS ein Spiel (Pfeiltasten + Routenauswahl) -->
+        <div class="spiel-bereich">
+        <div class="spiel" id="fjord-spiel">
+          <canvas id="fjord-canvas" width="192" height="108" tabindex="0"
+                  aria-label="Fjord-Fahrt-Spiel: Steuere das Schiff mit den Pfeiltasten durch den Fjord"></canvas>
+          <div class="spiel__hud">
+            <span>Punkte: <strong id="spiel-punkte">0</strong></span>
+            <span class="spiel__ort" id="spiel-ort" aria-live="polite"></span>
+            <span>Rekord: <strong id="spiel-rekord">0</strong></span>
+          </div>
+          <div class="spiel__overlay" id="spiel-overlay">
+            <p class="spiel__titel" id="spiel-titel">Fjord-Fahrt</p>
+            <p class="spiel__text" id="spiel-text">Wähle unten deine Route und entdecke die schönsten Orte des Nordens.</p>
+            <button type="button" class="btn spiel__start" id="spiel-start">Spiel starten</button>
+            <a class="spiel__link" id="spiel-link" href="reisen.html" hidden>Diese Reise in echt ansehen →</a>
+            <p class="spiel__hinweis">Pfeiltasten ← ↑ ↓ → = steuern · Leertaste = Start / Feuer</p>
+          </div>
+          <noscript>
+            <p class="spiel__noscript">Sonnenuntergang im Fjord – mit aktiviertem JavaScript kannst du hier ein Schiff steuern.</p>
+          </noscript>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unternehmensvorstellung -->
+    <section class="sektion" aria-labelledby="willkommen-titel">
+      <div class="container zweispaltig">
+        <div>
+          <span class="vorzeile">Willkommen bei Nordlicht Reisen</span>
+          <h2 id="willkommen-titel">Dein Reisebüro für den hohen Norden</h2>
+          <p class="einleitung">Seit 2012 bringen wir Reisende von Kiel aus nach Dänemark, Schweden, Norwegen und Finnland.</p>
+          <p>Wir kennen jeden Fjord, jede Hütte und das beste Zimtschnecken-Café in Stockholm aus eigener Erfahrung. Darum bekommst du bei uns keine Reise von der Stange, sondern einen Plan, der zu dir passt: Städtereisen, Naturreisen und Kurzurlaube – mit Bahn, Fähre oder Hurtigruten-Schiff.</p>
+          <a href="ueber-uns.html">Mehr über unser Team erfahren →</a>
+        </div>
+        <img src="img/reiseziel-lofoten.svg" alt="Rote Fischerhütten auf Stelzen vor schneebedeckten Bergen der Lofoten" width="960" height="640" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Ausgewählte Reiseangebote -->
+    <section class="sektion sektion--pfirsich" aria-labelledby="highlights-titel">
+      <div class="container">
+        <div class="sektion__kopf">
+          <span class="vorzeile">Unsere Highlights</span>
+          <h2 id="highlights-titel">Beliebte Reisen in dieser Saison</h2>
+        </div>
+
+        <div class="reise-raster">
+          <article class="reise">
+            <img src="img/reiseziel-lappland.svg" alt="Sanftes Nordlicht am rosa Dämmerungshimmel über einer roten Hütte im verschneiten Lappland" width="960" height="640" loading="lazy">
+            <div class="reise__inhalt">
+              <span class="badge badge--natur">Naturreise</span>
+              <h3>Nordlicht in Lappland</h3>
+              <p>Schneeschuhwandern, Husky-Tour und Nächte unter dem tanzenden Polarlicht in einer gemütlichen Holzhütte.</p>
+              <ul class="reise__fakten">
+                <li>6 Tage</li>
+                <li class="reise__preis">ab 1.190 €</li>
+              </ul>
+              <a class="btn" href="kontakt.html#kontaktformular" aria-label="Nordlicht in Lappland anfragen">Reise anfragen</a>
+            </div>
+          </article>
+
+          <article class="reise">
+            <img src="img/reiseziel-lofoten.svg" alt="Rote Fischerhütten vor den schroffen Bergen der Lofoten" width="960" height="640" loading="lazy">
+            <div class="reise__inhalt">
+              <span class="badge badge--natur">Naturreise</span>
+              <h3>Inselhüpfen auf den Lofoten</h3>
+              <p>Wanderungen über spitze Gipfel, Übernachtung in echten Rorbuer und Mitternachtssonne über dem Meer.</p>
+              <ul class="reise__fakten">
+                <li>8 Tage</li>
+                <li class="reise__preis">ab 1.390 €</li>
+              </ul>
+              <a class="btn" href="kontakt.html#kontaktformular" aria-label="Inselhüpfen auf den Lofoten anfragen">Reise anfragen</a>
+            </div>
+          </article>
+
+          <article class="reise">
+            <img src="img/reiseziel-kopenhagen.svg" alt="Bunte Giebelhäuser und Segelboote am Kanal Nyhavn in Kopenhagen" width="960" height="640" loading="lazy">
+            <div class="reise__inhalt">
+              <span class="badge badge--kurz">Kurzurlaub</span>
+              <h3>Kopenhagen-Kurztrip</h3>
+              <p>Mit dem Rad durch die Stadt, Smørrebrød am Nyhavn und ein Abend im Tivoli – perfekt fürs lange Wochenende.</p>
+              <ul class="reise__fakten">
+                <li>3 Tage</li>
+                <li class="reise__preis">ab 349 €</li>
+              </ul>
+              <a class="btn" href="kontakt.html#kontaktformular" aria-label="Kopenhagen-Kurztrip anfragen">Reise anfragen</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="mehr-link"><a class="btn btn--hell" href="reisen.html">Alle Reiseangebote ansehen</a></p>
+      </div>
+    </section>
+
+    <!-- Unternehmensvorteile -->
+    <section class="sektion sektion--sonne" aria-labelledby="vorteile-titel">
+      <div class="container">
+        <div class="sektion__kopf">
+          <span class="vorzeile">Warum Nordlicht Reisen?</span>
+          <h2 id="vorteile-titel">Deine Vorteile bei uns</h2>
+        </div>
+        <ul class="vorteile">
+          <li class="vorteil">
+            <img src="img/icon-kompass.svg" alt="" width="56" height="56">
+            <h3>Persönliche Beratung</h3>
+            <p>Wir waren selbst dort und planen deine Route individuell mit dir.</p>
+          </li>
+          <li class="vorteil">
+            <img src="img/icon-blatt.svg" alt="" width="56" height="56">
+            <h3>Nachhaltig unterwegs</h3>
+            <p>Anreise bevorzugt mit Bahn und Fähre, kleine Gruppen, lokale Partner.</p>
+          </li>
+          <li class="vorteil">
+            <img src="img/icon-schiff.svg" alt="" width="56" height="56">
+            <h3>Alles aus einer Hand</h3>
+            <p>Unterkunft, Transfers und Ausflüge – du musst dich um nichts kümmern.</p>
+          </li>
+          <li class="vorteil">
+            <img src="img/icon-herz.svg" alt="" width="56" height="56">
+            <h3>24/7 Notfall-Hotline</h3>
+            <p>Auch unterwegs sind wir rund um die Uhr für dich erreichbar.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Call-to-Action-Band -->
+    <section class="band" aria-labelledby="band-titel">
+      <div class="container">
+        <h2 id="band-titel">Bereit für den Norden?</h2>
+        <p>Erzähl uns, wovon du träumst – wir melden uns innerhalb von 24 Stunden mit einem ersten Reisevorschlag.</p>
+        <a class="btn" href="kontakt.html">Jetzt Kontakt aufnehmen</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-raster">
+        <section>
+          <h2>Nordlicht Reisen</h2>
+          <p>Städtereisen, Naturreisen und Kurzurlaube in Skandinavien – persönlich geplant seit 2012.</p>
+        </section>
+        <section>
+          <h2>Kontakt</h2>
+          <address>
+            Nordlicht Reisen GmbH<br>
+            Hafenstraße 12, 24103 Kiel<br>
+            <a href="tel:+494311234560">0431 123 456 0</a><br>
+            <a href="mailto:hallo@nordlicht-reisen.example">hallo@nordlicht-reisen.example</a>
+          </address>
+        </section>
+        <nav aria-label="Footer-Navigation">
+          <h2>Links</h2>
+          <ul>
+            <li><a href="reisen.html">Reiseangebote</a></li>
+            <li><a href="ueber-uns.html">Über uns</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="kontakt.html#impressum">Impressum</a></li>
+            <li><a href="kontakt.html#datenschutz-info">Datenschutz</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer-unten">© 2026 Nordlicht Reisen GmbH · Fiktives Unternehmen im Rahmen eines Schulprojekts</p>
+    </div>
+  </footer>
+</body>
+</html>

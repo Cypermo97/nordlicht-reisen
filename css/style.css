@@ -1,0 +1,1264 @@
+/* ==========================================================================
+   Nordlicht Reisen – Stylesheet
+   Thema: "Mitternachtssonne" – helles, warmes Sonnenuntergangslicht
+   Aufbau: Mobile First. Grundregeln gelten fürs Smartphone (bis 767 px),
+   Media Queries erweitern das Layout für Tablet (ab 768 px) und Desktop (ab 1024 px).
+
+   Inhalt
+   1. Variablen (CSS Custom Properties)
+   2. Reset & Grundlagen
+   3. Typografie
+   4. Buttons & Links
+   5. Header & Navigation
+   6. Hero (Startseite) & Fjord-Spiel
+   7. Sektionen, Karten, Raster
+   8. Seitenkopf (Unterseiten)
+   9. Über uns: Zeitleiste, Team, Galerie
+   10. Kontakt & Formular
+   11. Footer
+   12. Media Queries: Tablet, Desktop
+   13. Reduzierte Bewegung, Druckansicht
+   ========================================================================== */
+
+/* 1. Variablen ------------------------------------------------------------ */
+:root {
+  /* Farben – bewusst gemischt in HEX, RGB und HSL */
+  --dunkel: #3a1f35;            /* Pflaume: Text, Rahmen, Pixel-Schatten */
+  --dunkel-2: #5a2e4f;
+  --akzent: #ff8a5c;            /* Koralle: Buttons */
+  --akzent-hell: #ffab85;
+  --akzent-dunkel: #b4441c;     /* dunkles Orange: Links, gut lesbar auf Creme */
+  --gold: #ffc65c;
+  --rosa: hsl(340, 75%, 62%);
+  --pfirsich: #ffeedf;
+  --creme: #fff8f0;
+  --text: #3a1f35;
+  --text-leise: #74505f;
+  --text-hell: #fff8f0;
+  --rot: rgb(196, 52, 72);
+  --karte: #ffffff;
+  --schatten: rgba(58, 31, 53, 0.16);
+
+  /* Schriften */
+  --font-pixel: "Pixelify Sans", "Courier New", monospace;
+  --font-text: var(--font-pixel); /* alles im 2D-Pixel-Look */
+
+  /* Abstände (rem = relativ zur Grundschriftgröße → flexibel) */
+  --abstand-s: 0.5rem;
+  --abstand-m: 1rem;
+  --abstand-l: 2rem;
+  --abstand-xl: 3.5rem;
+  --breite-max: 72rem;
+  --radius: 4px;
+  --pixel-schatten: 4px 4px 0 var(--dunkel);
+}
+
+/* 2. Reset & Grundlagen ----------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sprungziele (#id) nicht unter dem festen Header verstecken */
+[id] {
+  scroll-margin-top: 7rem;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-text);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  background-color: var(--creme);
+  overflow-x: hidden; /* Sicherheitsnetz gegen horizontales Scrollen */
+}
+
+/* Responsive Bilder: nie breiter als ihr Container */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--breite-max);
+  margin: 0 auto;
+  padding: 0 var(--abstand-m);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 100;
+  padding: var(--abstand-s) var(--abstand-m);
+  background: var(--gold);
+  color: var(--dunkel);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  left: var(--abstand-m);
+}
+
+/* 3. Typografie ------------------------------------------------------------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-pixel);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 var(--abstand-m);
+}
+
+h1 {
+  font-size: 2.1rem;
+}
+
+h2 {
+  font-size: 1.7rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p {
+  margin: 0 0 var(--abstand-m);
+}
+
+.vorzeile {
+  display: inline-block;
+  margin-bottom: var(--abstand-s);
+  font-family: var(--font-pixel);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--akzent-dunkel);
+}
+
+.einleitung {
+  font-size: 1.1rem;
+  color: var(--text-leise);
+  max-width: 40rem;
+}
+
+/* 4. Buttons & Links ------------------------------------------------------- */
+a {
+  color: var(--akzent-dunkel);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--dunkel);
+}
+
+/* Pixel-Button: harter Schatten wie in alten Videospielen */
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.3rem;
+  font-family: var(--font-pixel);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--dunkel);
+  background-color: var(--akzent);
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: var(--pixel-schatten);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.btn:hover {
+  color: var(--dunkel);
+  background-color: var(--akzent-hell);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--dunkel);
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--dunkel);
+}
+
+.btn--hell {
+  background-color: #ffffff;
+}
+
+.btn--hell:hover {
+  background-color: var(--pfirsich);
+}
+
+/* Sichtbarer Tastaturfokus für alle interaktiven Elemente */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+canvas:focus-visible {
+  outline: 3px dashed var(--rosa);
+  outline-offset: 3px;
+}
+
+/* 5. Header & Navigation --------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(255, 248, 240, 0.96);
+  border-bottom: 4px solid var(--akzent);
+  box-shadow: 0 4px 0 var(--gold);
+}
+
+.site-header .container {
+  display: flex;
+  flex-direction: column; /* Smartphone: Logo über der Navigation */
+  align-items: center;
+  gap: var(--abstand-s);
+  padding-top: var(--abstand-s);
+  padding-bottom: var(--abstand-s);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-pixel);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dunkel);
+  text-decoration: none;
+}
+
+.logo:hover {
+  color: var(--akzent-dunkel);
+}
+
+.logo img {
+  width: 40px;
+  height: 40px;
+}
+
+.logo span {
+  color: var(--akzent-dunkel);
+}
+
+/* Navigation: Smartphone als 2x2-Raster (CSS Grid), ohne JavaScript */
+.hauptnav ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hauptnav a {
+  display: block;
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--dunkel);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.hauptnav a:hover {
+  border-color: var(--dunkel);
+  background-color: var(--pfirsich);
+}
+
+.hauptnav a:active {
+  background-color: var(--gold);
+}
+
+/* aktive Seite – Attributselektor auf aria-current */
+.hauptnav a[aria-current="page"] {
+  background-color: var(--akzent);
+  border-color: var(--dunkel);
+  box-shadow: 3px 3px 0 var(--dunkel);
+}
+
+/* 6. Hero & Fjord-Spiel ----------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: var(--text);
+  background-color: #ffbf72;
+  /* heller Verlauf über dem Bild sorgt für lesbaren Text */
+  background-image: linear-gradient(180deg, rgba(255, 248, 240, 0.82), rgba(255, 238, 223, 0.7)), url("../img/hero.svg");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  padding: var(--abstand-xl) 0;
+}
+
+/* CSS-Animation: schimmerndes Sonnenlicht über dem Hero-Bild */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% 30% -10%;
+  background:
+    radial-gradient(ellipse 40% 35% at 70% 60%, hsla(42, 100%, 70%, 0.45), transparent 70%),
+    radial-gradient(ellipse 35% 25% at 25% 40%, hsla(340, 85%, 75%, 0.35), transparent 70%);
+  animation: sonnenschimmer 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes sonnenschimmer {
+  0% {
+    transform: translateX(-5%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(5%) scale(1.08);
+    opacity: 0.8;
+  }
+}
+
+.hero__inhalt {
+  position: relative; /* liegt über dem ::before-Schimmer */
+  display: grid;
+  gap: var(--abstand-l);
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 2.3rem;
+  text-shadow: 3px 3px 0 var(--gold);
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--akzent-dunkel);
+}
+
+.hero__text p {
+  max-width: 34rem;
+  font-size: 1.1rem;
+}
+
+.hero__aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--abstand-m);
+  margin-top: var(--abstand-l);
+}
+
+/* Spiel-Rahmen: ohne JavaScript nur ein Bild, mit JS ein spielbares Canvas */
+.spiel {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  color: var(--text-hell);
+  background: #ffbf72 url("../img/hero.svg") center / cover no-repeat;
+  border: 4px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: 8px 8px 0 var(--akzent);
+  overflow: hidden;
+}
+
+.spiel canvas {
+  display: none;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  cursor: pointer;
+  touch-action: none; /* Finger-Steuerung: Wischen im Spiel scrollt nicht die Seite */
+}
+
+.spiel__hud,
+.spiel__overlay,
+.spiel__steuerung {
+  display: none;
+}
+
+.spiel__noscript {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: var(--abstand-s);
+  font-size: 0.9rem;
+  text-align: center;
+  background: rgba(58, 31, 53, 0.75);
+}
+
+/* Diese Klasse setzt das JavaScript – erst dann wird das Spiel sichtbar */
+.spiel--aktiv canvas {
+  display: block;
+}
+
+.spiel--aktiv .spiel__hud {
+  position: absolute;
+  z-index: 2; /* liegt über dem Menü-Overlay */
+  top: 0.4rem;
+  left: 0.6rem;
+  right: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  text-shadow: 2px 2px 0 var(--dunkel);
+  pointer-events: none;
+}
+
+.spiel--aktiv .spiel__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: var(--abstand-m);
+  text-align: center;
+  background: rgba(90, 46, 79, 0.42);
+  text-shadow: 1px 1px 0 var(--dunkel);
+}
+
+.spiel--aktiv .spiel__overlay[hidden] {
+  display: none;
+}
+
+/* Name der Sehenswürdigkeit, an der man gerade vorbeifährt */
+.spiel__ort {
+  flex: 1;
+  text-align: center;
+  color: #fff3c4;
+}
+
+.spiel__link {
+  font-family: var(--font-pixel);
+  color: #fff3c4;
+}
+
+.spiel__link:hover {
+  color: #ffffff;
+}
+
+/* Routenauswahl unter dem Spiel (wird per JS eingefügt) */
+.spiel__routen {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--abstand-m);
+}
+
+.spiel__routen-titel {
+  flex-basis: 100%;
+  font-weight: 700;
+}
+
+.spiel__routen button {
+  padding: 0.35rem 0.7rem;
+  font-family: var(--font-pixel);
+  font-size: 0.9rem;
+  color: var(--dunkel);
+  background: #ffffff;
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 var(--dunkel);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.spiel__routen button:hover {
+  background: var(--pfirsich);
+  transform: translate(-1px, -1px);
+}
+
+.spiel__routen button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--dunkel);
+}
+
+/* gewählte Route – Attributselektor auf aria-pressed */
+.spiel__routen button[aria-pressed="true"] {
+  background: var(--gold);
+}
+
+.spiel__titel {
+  margin: 0;
+  font-family: var(--font-pixel);
+  font-size: 1.25rem;
+  color: #fff3c4;
+  text-shadow: 3px 3px 0 var(--dunkel);
+}
+
+/* Smartphone: Menü im Spiel kompakt halten */
+.spiel__text,
+.spiel__hinweis {
+  display: none;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.spiel__hinweis {
+  color: #ffe9d6;
+}
+
+.spiel__start {
+  margin: 0.4rem 0;
+  text-shadow: none;
+}
+
+/* Touch-Steuerung für Smartphones und Tablets (wird per JS eingefügt) */
+.spiel--aktiv + .spiel__steuerung {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: var(--abstand-m);
+}
+
+.spiel__steuerung button {
+  padding: 0.6rem 0;
+  font-family: var(--font-pixel);
+  font-size: 1.4rem;
+  color: var(--dunkel);
+  background: #ffffff;
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 var(--dunkel);
+  touch-action: none;
+  user-select: none;
+}
+
+/* mit Feuer-Knopf: 5 Spalten */
+.spiel--aktiv + .spiel__steuerung--feuer {
+  grid-template-columns: repeat(4, 1fr) 1.4fr;
+}
+
+.spiel__steuerung button[hidden] {
+  display: none;
+}
+
+.spiel__steuerung .spiel__feuer {
+  font-size: 1rem;
+  background: var(--akzent);
+}
+
+.spiel__steuerung button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--dunkel);
+  background: var(--gold);
+}
+
+/* 7. Sektionen, Karten, Raster --------------------------------------------- */
+.sektion {
+  padding: var(--abstand-xl) 0;
+}
+
+.sektion--pfirsich {
+  background-color: var(--pfirsich);
+}
+
+/* warme Farbfläche wie ein Abendhimmel */
+.sektion--sonne {
+  background-color: #ffb27a;
+  background-image: linear-gradient(160deg, #ffd08a 0%, #ffa27a 55%, #f78d93 100%);
+}
+
+.sektion--sonne .vorzeile {
+  color: var(--dunkel-2);
+}
+
+.sektion__kopf {
+  margin-bottom: var(--abstand-l);
+}
+
+/* Reise-Raster: Smartphone 1 Spalte, Tablet 2, Desktop 3 (siehe Media Queries) */
+.reise-raster {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--abstand-l);
+}
+
+/* Reisekarte: Flexbox, damit der Button immer unten sitzt */
+.reise {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--karte);
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--schatten);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reise:hover {
+  transform: translateY(-4px);
+  box-shadow: 10px 10px 0 rgba(255, 138, 92, 0.45);
+}
+
+.reise img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-bottom: 3px solid var(--dunkel);
+}
+
+.reise__inhalt {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: var(--abstand-m) var(--abstand-m) var(--abstand-l);
+}
+
+.reise__inhalt > p {
+  flex-grow: 1; /* schiebt Fakten und Button nach unten */
+  color: var(--text-leise);
+}
+
+.badge {
+  align-self: flex-start;
+  margin-bottom: var(--abstand-s);
+  padding: 0.1rem 0.55rem;
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--dunkel);
+  border: 2px solid var(--dunkel);
+  border-radius: var(--radius);
+}
+
+.badge--stadt {
+  background-color: #ffd98a;
+}
+
+.badge--natur {
+  background-color: #cdeec0;
+}
+
+.badge--kurz {
+  background-color: #ffd0dc;
+}
+
+.reise__fakten {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--abstand-s);
+  margin: 0 0 var(--abstand-m);
+  padding: var(--abstand-s) 0;
+  list-style: none;
+  border-top: 2px dashed #f0cdb8;
+  font-weight: 700;
+}
+
+.reise__preis {
+  font-family: var(--font-pixel);
+  font-size: 1.2rem;
+  color: var(--rot);
+}
+
+.reise .btn {
+  align-self: flex-start;
+  font-size: 0.95rem;
+}
+
+.mehr-link {
+  margin-top: var(--abstand-l);
+  text-align: center;
+}
+
+/* Vorteile: Flexbox mit Umbruch */
+.vorteile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--abstand-l);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vorteil {
+  flex: 1 1 100%;
+  padding: var(--abstand-l) var(--abstand-m);
+  background-color: rgba(255, 248, 240, 0.85);
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: var(--pixel-schatten);
+}
+
+.vorteil img {
+  width: 56px;
+  height: 56px;
+  margin-bottom: var(--abstand-m);
+  padding: 4px;
+  background: #ffffff;
+  border: 2px solid var(--dunkel);
+  border-radius: var(--radius);
+}
+
+.vorteil p {
+  margin: 0;
+  color: var(--text-leise);
+}
+
+/* Infoband mit Hintergrundbild */
+.band {
+  padding: var(--abstand-xl) 0;
+  text-align: center;
+  background-image: linear-gradient(rgba(255, 248, 240, 0.72), rgba(255, 238, 223, 0.85)), url("../img/reiseziel-stockholm.svg");
+  background-size: cover;
+  background-position: center 40%;
+}
+
+.band p {
+  max-width: 36rem;
+  margin: 0 auto var(--abstand-l);
+}
+
+/* 8. Seitenkopf (Unterseiten) ---------------------------------------------- */
+.seitenkopf {
+  padding: var(--abstand-xl) 0 var(--abstand-l);
+  background-color: #ffbf72;
+  background-image: linear-gradient(90deg, rgba(255, 248, 240, 0.92) 30%, rgba(255, 248, 240, 0.35)), url("../img/hero.svg");
+  background-size: cover;
+  background-position: center 60%;
+  border-bottom: 3px solid var(--dunkel);
+}
+
+.seitenkopf h1 {
+  text-shadow: 3px 3px 0 var(--gold);
+}
+
+/* 9. Über uns -------------------------------------------------------------- */
+.zweispaltig {
+  display: grid;
+  gap: var(--abstand-l);
+  align-items: center;
+}
+
+.zweispaltig img {
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--akzent);
+}
+
+/* Zeitleiste – Kombinator-Selektor: li direkt in .zeitleiste */
+.zeitleiste {
+  margin: var(--abstand-l) 0 0;
+  padding: 0 0 0 var(--abstand-l);
+  list-style: none;
+  border-left: 4px solid var(--akzent);
+}
+
+.zeitleiste > li {
+  position: relative;
+  margin-bottom: var(--abstand-l);
+}
+
+.zeitleiste > li::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--abstand-l) - 10px);
+  top: 0.35rem;
+  width: 16px;
+  height: 16px;
+  background: var(--gold);
+  border: 3px solid var(--dunkel);
+}
+
+.zeitleiste strong {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: 1.2rem;
+}
+
+.team {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--abstand-l);
+}
+
+.person {
+  padding: var(--abstand-l);
+  text-align: center;
+  background: var(--karte);
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--schatten);
+}
+
+.person img {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto var(--abstand-m);
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+}
+
+.person h3 {
+  margin-bottom: 0.2rem;
+}
+
+.person__rolle {
+  font-weight: 700;
+  color: var(--akzent-dunkel);
+}
+
+.person p:last-child {
+  margin: 0;
+  color: var(--text-leise);
+}
+
+/* CSS-only Galerie mit Lightbox über :target */
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--abstand-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.galerie a {
+  display: block;
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.galerie img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.galerie a:hover img,
+.galerie a:focus img {
+  transform: scale(1.08);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--abstand-m);
+  background: rgba(58, 31, 53, 0.9);
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+.lightbox figure {
+  margin: 0;
+  max-width: 60rem;
+  text-align: center;
+  color: var(--text-hell);
+}
+
+.lightbox img {
+  width: 100%;
+  border: 4px solid var(--gold);
+}
+
+.lightbox figcaption {
+  margin-top: var(--abstand-s);
+  font-family: var(--font-pixel);
+}
+
+.lightbox__schliessen {
+  position: absolute;
+  top: var(--abstand-m);
+  right: var(--abstand-m);
+}
+
+/* 10. Kontakt & Formular --------------------------------------------------- */
+.kontakt-layout {
+  display: grid;
+  gap: var(--abstand-l);
+}
+
+.kontaktdaten {
+  padding: var(--abstand-l);
+  background-image: linear-gradient(160deg, #ffe3c2, #ffcfb8);
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: var(--pixel-schatten);
+}
+
+.kontaktdaten address {
+  font-style: normal;
+  margin-bottom: var(--abstand-m);
+}
+
+.oeffnungszeiten {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.oeffnungszeiten li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--abstand-m);
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed rgba(58, 31, 53, 0.3);
+}
+
+#kontaktformular {
+  padding: var(--abstand-l) var(--abstand-m);
+  background: var(--karte);
+  border: 3px solid var(--dunkel);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--schatten);
+}
+
+fieldset {
+  margin: 0 0 var(--abstand-l);
+  padding: var(--abstand-m);
+  border: 2px dashed #e8bfa8;
+  border-radius: var(--radius);
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-family: var(--font-pixel);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.feld-reihe {
+  display: grid;
+  gap: var(--abstand-m);
+}
+
+.feld {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: var(--abstand-m);
+}
+
+.feld label {
+  font-weight: 700;
+}
+
+.pflicht {
+  color: var(--rot);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  color: var(--text);
+  background-color: var(--creme);
+  border: 2px solid var(--dunkel);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+/* Fokuszustände der Formularfelder */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: var(--akzent-dunkel);
+  box-shadow: 4px 4px 0 var(--gold);
+}
+
+/* Native Validierung sichtbar machen – erst nachdem der Nutzer etwas getan hat */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: var(--rot);
+  box-shadow: 4px 4px 0 rgba(196, 52, 72, 0.3);
+}
+
+input:user-valid,
+textarea:user-valid {
+  border-color: #3f8a4a;
+}
+
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: var(--abstand-l);
+}
+
+.checkbox input {
+  flex-shrink: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: 0.15rem;
+  accent-color: var(--akzent-dunkel);
+}
+
+.checkbox input:focus {
+  box-shadow: none;
+  outline: 3px dashed var(--rosa);
+  outline-offset: 2px;
+}
+
+.hinweis-klein {
+  font-size: 0.9rem;
+  color: var(--text-leise);
+}
+
+/* 11. Footer --------------------------------------------------------------- */
+.site-footer {
+  padding: var(--abstand-xl) 0 var(--abstand-l);
+  color: #f6dccf;
+  background-color: var(--dunkel);
+  border-top: 4px solid var(--akzent);
+  box-shadow: 0 -4px 0 var(--gold);
+}
+
+.footer-raster {
+  display: grid;
+  gap: var(--abstand-l);
+}
+
+.site-footer h2 {
+  font-size: 1.15rem;
+  color: var(--gold);
+}
+
+.site-footer address {
+  font-style: normal;
+}
+
+.site-footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer li + li {
+  margin-top: 0.3rem;
+}
+
+.site-footer a {
+  color: var(--text-hell);
+}
+
+.site-footer a:hover {
+  color: var(--gold);
+}
+
+.footer-unten {
+  margin-top: var(--abstand-l);
+  padding-top: var(--abstand-m);
+  font-size: 0.9rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 248, 240, 0.2);
+}
+
+/* 12. Media Queries -------------------------------------------------------- */
+
+/* Tablet: ab 768 px */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 0 var(--abstand-l);
+  }
+
+  .site-header .container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  /* Navigation wird zur Zeile (Flexbox) */
+  .hauptnav ul {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .spiel__titel {
+    font-size: 1.6rem;
+  }
+
+  .spiel--aktiv .spiel__hud {
+    font-size: 0.95rem;
+  }
+
+  .spiel__text,
+  .spiel__hinweis {
+    display: block;
+  }
+
+  .reise-raster {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .vorteil {
+    flex-basis: calc(50% - var(--abstand-l) / 2);
+  }
+
+  .team {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--abstand-m);
+  }
+
+  .person {
+    padding: var(--abstand-l) var(--abstand-m);
+  }
+
+  .galerie {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .feld-reihe {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #kontaktformular {
+    padding: var(--abstand-l);
+  }
+
+  .footer-raster {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .spiel--aktiv + .spiel__steuerung {
+    max-width: 22rem;
+  }
+}
+
+/* Geräte mit Maus und Tastatur brauchen keine Touch-Knöpfe */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .spiel--aktiv + .spiel__steuerung {
+    display: none;
+  }
+}
+
+/* Desktop: ab 1024 px */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  .hero {
+    padding: 5rem 0;
+    background-image: linear-gradient(90deg, rgba(255, 248, 240, 0.9) 0%, rgba(255, 248, 240, 0.65) 45%, rgba(255, 248, 240, 0.1) 100%), url("../img/hero.svg");
+  }
+
+  .hero__inhalt {
+    grid-template-columns: 1fr 1.15fr;
+  }
+
+  .hero h1 {
+    font-size: 3.4rem;
+  }
+
+  .reise-raster {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .vorteil {
+    flex-basis: calc(25% - var(--abstand-l) * 3 / 4);
+  }
+
+  .zweispaltig {
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--abstand-xl);
+  }
+
+  .team {
+    gap: var(--abstand-l);
+  }
+
+  .kontakt-layout {
+    grid-template-columns: 1fr 2fr;
+    align-items: start;
+  }
+
+  .footer-raster {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+/* 13. Reduzierte Bewegung & Druck ------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .site-header,
+  .hauptnav,
+  .spiel,
+  .hero::before,
+  .btn,
+  .skip-link,
+  .lightbox {
+    display: none !important;
+  }
+
+  body {
+    color: #000;
+    background: #fff;
+  }
+
+  .hero,
+  .seitenkopf,
+  .band,
+  .sektion--sonne,
+  .site-footer {
+    color: #000;
+    background: none;
+    box-shadow: none;
+  }
+
+  .reise,
+  .person {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  a[href^="http"]::after,
+  a[href^="mailto"]::after {
+    content: " (" attr(href) ")";
+  }
+}

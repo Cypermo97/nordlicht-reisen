@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Kontakt zu Nordlicht Reisen in Kiel: Telefon, E-Mail, Öffnungszeiten und Kontaktformular für deine Reiseanfrage.">
+  <meta name="author" content="Nordlicht Reisen GmbH">
+  <title>Kontakt – Nordlicht Reisen</title>
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">
+        <img src="img/logo.svg" alt="Logo von Nordlicht Reisen" width="40" height="40">
+        Nordlicht <span>Reisen</span>
+      </a>
+      <nav class="hauptnav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html">Start</a></li>
+          <li><a href="reisen.html">Reisen</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html" aria-current="page">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inhalt">
+    <section class="seitenkopf" aria-labelledby="seiten-titel">
+      <div class="container">
+        <span class="vorzeile">Kontakt</span>
+        <h1 id="seiten-titel">Schreib uns!</h1>
+        <p class="einleitung">Du hast eine Frage oder möchtest eine Reise anfragen? Wir antworten innerhalb von 24 Stunden.</p>
+      </div>
+    </section>
+
+    <section class="sektion" aria-label="Kontaktdaten und Kontaktformular">
+      <div class="container kontakt-layout">
+        <!-- Kontaktdaten -->
+        <div class="kontaktdaten">
+          <h2>So erreichst du uns</h2>
+          <address>
+            <strong>Nordlicht Reisen GmbH</strong><br>
+            Hafenstraße 12<br>
+            24103 Kiel<br><br>
+            Telefon: <a href="tel:+494311234560">0431 123 456 0</a><br>
+            E-Mail: <a href="mailto:hallo@nordlicht-reisen.example">hallo@nordlicht-reisen.example</a>
+          </address>
+
+          <h3>Öffnungszeiten</h3>
+          <ul class="oeffnungszeiten">
+            <li><span>Montag – Freitag</span> <span>9 – 18 Uhr</span></li>
+            <li><span>Samstag</span> <span>10 – 14 Uhr</span></li>
+            <li><span>Notfall-Hotline</span> <span>24/7</span></li>
+          </ul>
+        </div>
+
+        <!-- Kontaktformular: native HTML-Validierung (required, type="email", minlength) -->
+        <form id="kontaktformular" action="#" method="post">
+          <h2>Kontaktformular</h2>
+
+          <fieldset>
+            <legend>Persönliche Angaben</legend>
+            <div class="feld-reihe">
+              <div class="feld">
+                <label for="vorname">Vorname <span class="pflicht" aria-hidden="true">*</span></label>
+                <input type="text" id="vorname" name="vorname" autocomplete="given-name" required>
+              </div>
+              <div class="feld">
+                <label for="nachname">Nachname <span class="pflicht" aria-hidden="true">*</span></label>
+                <input type="text" id="nachname" name="nachname" autocomplete="family-name" required>
+              </div>
+            </div>
+            <div class="feld">
+              <label for="email">E-Mail-Adresse <span class="pflicht" aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="name@beispiel.de" required>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Deine Anfrage</legend>
+            <div class="feld">
+              <label for="betreff">Betreff <span class="pflicht" aria-hidden="true">*</span></label>
+              <select id="betreff" name="betreff" required>
+                <option value="">Bitte auswählen …</option>
+                <optgroup label="Reiseanfrage">
+                  <option value="kopenhagen">Kopenhagen-Kurztrip</option>
+                  <option value="stockholm">Stockholm &amp; Schären</option>
+                  <option value="oslo">Oslo kompakt</option>
+                  <option value="lofoten">Inselhüpfen auf den Lofoten</option>
+                  <option value="lappland">Nordlicht in Lappland</option>
+                  <option value="geiranger">Fjord-Wochenende Geiranger</option>
+                </optgroup>
+                <optgroup label="Sonstiges">
+                  <option value="beratung">Allgemeine Beratung</option>
+                  <option value="gruppe">Gruppenreise</option>
+                  <option value="feedback">Feedback</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="feld">
+              <label for="nachricht">Nachricht <span class="pflicht" aria-hidden="true">*</span></label>
+              <textarea id="nachricht" name="nachricht" rows="6" minlength="10" placeholder="Wann möchtest du reisen, mit wie vielen Personen …?" required></textarea>
+            </div>
+          </fieldset>
+
+          <div class="checkbox">
+            <input type="checkbox" id="datenschutz" name="datenschutz" value="akzeptiert" required>
+            <label for="datenschutz">Ich habe die <a href="#datenschutz-info">Datenschutzhinweise</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden. <span class="pflicht" aria-hidden="true">*</span></label>
+          </div>
+
+          <button type="submit" class="btn">Nachricht senden</button>
+          <p class="hinweis-klein">* Pflichtfeld. Schulprojekt: Das Formular wird nicht wirklich versendet.</p>
+        </form>
+      </div>
+    </section>
+
+    <section class="sektion sektion--pfirsich" aria-labelledby="rechtliches-titel">
+      <div class="container">
+        <h2 id="rechtliches-titel">Rechtliches</h2>
+        <div class="zweispaltig">
+          <article id="impressum">
+            <h3>Impressum</h3>
+            <p>Nordlicht Reisen GmbH (fiktiv)<br>Hafenstraße 12, 24103 Kiel<br>Geschäftsführerin: Ingrid Solberg<br>Registergericht Kiel, HRB 00000</p>
+          </article>
+          <article id="datenschutz-info">
+            <h3>Datenschutzhinweise</h3>
+            <p>Deine Angaben aus dem Kontaktformular nutzen wir ausschließlich, um deine Anfrage zu beantworten. Wir geben sie nicht an Dritte weiter und löschen sie, sobald sie nicht mehr benötigt werden.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-raster">
+        <section>
+          <h2>Nordlicht Reisen</h2>
+          <p>Städtereisen, Naturreisen und Kurzurlaube in Skandinavien – persönlich geplant seit 2012.</p>
+        </section>
+        <section>
+          <h2>Kontakt</h2>
+          <address>
+            Nordlicht Reisen GmbH<br>
+            Hafenstraße 12, 24103 Kiel<br>
+            <a href="tel:+494311234560">0431 123 456 0</a><br>
+            <a href="mailto:hallo@nordlicht-reisen.example">hallo@nordlicht-reisen.example</a>
+          </address>
+        </section>
+        <nav aria-label="Footer-Navigation">
+          <h2>Links</h2>
+          <ul>
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="reisen.html">Reiseangebote</a></li>
+            <li><a href="ueber-uns.html">Über uns</a></li>
+            <li><a href="#impressum">Impressum</a></li>
+            <li><a href="#datenschutz-info">Datenschutz</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="footer-unten">© 2026 Nordlicht Reisen GmbH · Fiktives Unternehmen im Rahmen eines Schulprojekts</p>
+    </div>
+  </footer>
+</body>
+</html>
